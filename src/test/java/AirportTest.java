@@ -69,10 +69,11 @@ public class AirportTest {
   @Test
   public void checkAtLeastOneBomberInMilitaryPlanes() {
     List<MilitaryPlane> bomberMilitaryPlanes = AIRPORT.getTypeMilitaryPlanes(MilitaryType.BOMBER);
+    boolean countBomberPlanesAtLeastOne = bomberMilitaryPlanes.stream()
+            .filter(militaryPlane -> militaryPlane.getType().equals(MilitaryType.BOMBER)).count() > 1;
 
-    for (MilitaryPlane militaryPlane : bomberMilitaryPlanes) {
-      Assert.assertEquals(militaryPlane.getType(), MilitaryType.BOMBER);
-    }
+    Assert.assertTrue(countBomberPlanesAtLeastOne);
+
   }
 
   @Test
