@@ -18,23 +18,11 @@ public class Airport {
   }
 
   public List<PassengerPlane> getPassengerPlane() {
-    List<PassengerPlane> passengerPlanes = new ArrayList<>();
-    for (Plane plane : planes) {
-      if (plane instanceof PassengerPlane) {
-        passengerPlanes.add((PassengerPlane) plane);
-      }
-    }
-    return passengerPlanes;
+    return planes.stream().filter(PassengerPlane.class::isInstance).map(PassengerPlane.class::cast).toList();
   }
 
   public List<MilitaryPlane> getMilitaryPlanes() {
-    List<MilitaryPlane> militaryPlanes = new ArrayList<>();
-    for (Plane plane : planes) {
-      if (plane instanceof MilitaryPlane) {
-        militaryPlanes.add((MilitaryPlane) plane);
-      }
-    }
-    return militaryPlanes;
+    return planes.stream().filter(MilitaryPlane.class::isInstance).map(MilitaryPlane.class::cast).toList();
   }
 
   public PassengerPlane getPassengerPlaneWithMaxCapacity() {
@@ -47,13 +35,7 @@ public class Airport {
   }
 
   public List<ExperimentalPlane> getExperimentalPlanes() {
-    List<ExperimentalPlane> experimentalPlanes = new ArrayList<>();
-    for (Plane plane : planes) {
-      if (plane instanceof ExperimentalPlane) {
-        experimentalPlanes.add((ExperimentalPlane) plane);
-      }
-    }
-    return experimentalPlanes;
+    return planes.stream().filter(ExperimentalPlane.class::isInstance).map(ExperimentalPlane.class::cast).toList();
   }
 
   public Airport sortByMaxDistance() {
